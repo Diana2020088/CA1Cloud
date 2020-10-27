@@ -4,8 +4,8 @@ const COLLECTION = "projects";
 module.exports = () => {
     const get = async () => {
         console.log('inside projects model');
-        const authors = await db.get ( COLLECTION );
-        return authors ;
+        const projects = await db.get ( COLLECTION );
+        return projects ;
     }
 
     const add = async (slug, name, description) =>{
