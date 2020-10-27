@@ -6,7 +6,7 @@ const port = process.env.PORT || 3000;
 
 const projectsController = require("./controllers/projects")();
 const usersController = require("./controllers/users")();
-const issuesController = require("./controller/issues")();
+//const issuesController = require("./controller/issues")();
 
 const app = (module.exports = express());
 
@@ -33,7 +33,7 @@ app.get("/projects", projectsController.postController);
 //A Project
 app.get("/projects/:slug", projectsController.getBySlug);
 //all issues
-app.get("/projects/:slug/issues", issuesController.getController);
+//app.get("/projects/:slug/issues", issuesController.getController);
 
 
 app.listen(port, hostname, () => {
