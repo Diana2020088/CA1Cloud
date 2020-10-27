@@ -1,22 +1,23 @@
-const issues = require('../models/issues.js')();
+const issues = require ('../models/issues.js')();
 
 module.exports = () => {
-    const getController = async (req, res) => {
+    const getController = async (req, res) =>{
         res.json(await issues.get());
     }
-    const getBySlug = async (req, res) => {
-        res.json(await issues.get(parseInt(req.params.issueNumber)));
-    }
-    const postController = async (req, res) =>{
-        const title = req.body.title;
-        const description = req.body.description;
-        const results = await issues.add(title, description);
-        res.json(results);
+
+    const getByIssueNumber = async (req, res) => {
+        res.json({error: "byEmail not implemented yet"});
     }
 
-    return{
-    getController,
-    postController,
-    getBySlug
+    const postController = async (req, res) => {
+        const title = req.body.title;
+        const description = req.body.description;
+        const result = await users.add(title, description);
+        res.json(result);
+    }
+    return {
+        getController,
+        postController,
+        getByIssueNumber
     }
 }
