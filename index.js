@@ -6,7 +6,7 @@ const port = process.env.PORT || 3000;
 
 const projectsController = require("./controllers/projects")();
 const usersController = require("./controllers/users")();
-const issuesController = require("./controller/issues")();
+const issuesController = require("./controllers/issues")();
 
 const app = (module.exports = express());
 
