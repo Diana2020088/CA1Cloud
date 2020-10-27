@@ -10,10 +10,10 @@ module.exports = () => {
     }
 
     const postController = async (req, res) => {
+        const slug = req.body.slug;
         const name = req.body.name;
-        const email = req.body.email;
-        const usertype = req.body.usertype;
-        const result = await users.add(name, email, usertype);
+        const description = req.body.description;
+        const result = await users.add(slug, name, description);
         res.json(result);
     }
     return {
