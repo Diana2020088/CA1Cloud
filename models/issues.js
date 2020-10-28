@@ -9,7 +9,7 @@ module.exports = () =>{
             return issues;
         }
         const issue = await db.get(COLLECTION, { issueNumber });
-        return issueNumber;
+        return issue;
     }
 
     const add = async (title, description) => {
