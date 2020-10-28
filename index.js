@@ -33,7 +33,7 @@ app.post("/projects", projectsController.postController);
 //A Project
 app.get("/projects/:slug", projectsController.getBySlug);
 //all issues
-app.get("/projects/:slug/issues", issuesController.getController);
+app.get("/projects/issues", issuesController.getController);
 
 
 app.listen(port, hostname, () => {
