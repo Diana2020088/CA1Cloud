@@ -12,12 +12,13 @@ module.exports = () => {
         const results = await db.add(COLLECTION, {
             slug: slug,
             name: name,
-            descrption: description,
+            description: description,
         });
         return results.results;
     };
 
-    return
-    get;
-    add;
+    return{
+        get,
+        add,
+    };
 }
