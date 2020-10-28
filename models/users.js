@@ -9,7 +9,9 @@ module.exports = () => {
             return users;
         }
 
-        return { error: 'byEmail not implemented yet'}
+        //return { error: 'byEmail not implemented yet'}
+        const user = await db.get(COLLECTION, { email });
+        return user;
     };
 
     const add =async (name, email, usertype) => {
