@@ -6,7 +6,7 @@ module.exports = () => {
     }
 
     const getByEmail = async (req, res) => {
-        res.json({error: "byEmail not implemented yet"});
+        res.json(await users.get(parseInt(req.params.email)));
     }
 
     const postController = async (req, res) => {
