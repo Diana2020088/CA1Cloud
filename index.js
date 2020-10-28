@@ -29,7 +29,7 @@ app.get("/users/:email", usersController.getByEmail);
 //Get all projects
 app.get("/projects", projectsController.getController);
 //Add a project
-app.get("/projects", projectsController.postController);
+app.post("/projects", projectsController.postController);
 //A Project
 app.get("/projects/:slug", projectsController.getBySlug);
 //all issues
