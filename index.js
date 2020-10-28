@@ -32,10 +32,13 @@ app.get("/projects", projectsController.getController);
 app.post("/projects", projectsController.postController);
 //A Project
 app.get("/projects/:slug", projectsController.getBySlug);
+
 //all issues
 app.get("/issues", issuesController.getController);
 //Get an issue
 app.get("/issues/:issueNumber", issuesController.getByIssueNumber);
+// Add issue to project
+app.post("/project/:slug/issues", issuesController.postController);
 
 
 app.listen(port, hostname, () => {
