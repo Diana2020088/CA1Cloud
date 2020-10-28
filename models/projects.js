@@ -2,10 +2,15 @@ const db = require ("../db")();
 const COLLECTION = "projects";
 
 module.exports = () => {
-    const get = async () => {
+    const get = async (slug = null) => {
         console.log('inside projects model');
-        const projects = await db.get ( COLLECTION );
-        return projects ;
+        if (!slug) {
+            const projects = await db.get(COLLECTION);
+            return projects;
+        }
+
+        const project = await db.get(COLLECTION, {slug });
+        return project;
     }
 
     const add = async (slug, name, description) =>{
