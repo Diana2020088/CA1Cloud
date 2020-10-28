@@ -5,7 +5,7 @@ module.exports = () => {
     const get = async (email = null) => {
         console.log('inside users model');
         if(!email) {
-            const users = await db.get(COLLECTION);
+            const users = await db.get(COLLECTION, { email});
             return users;
         }
 
