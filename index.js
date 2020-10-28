@@ -35,7 +35,7 @@ app.get("/projects/:slug", projectsController.getBySlug);
 //all issues
 app.get("/issues", issuesController.getController);
 //Get an issue
-app.get("/issues/:issueNumber", issuesController.getController);
+app.get("/issues/:issueNumber", issuesController.getByIssueNumber);
 
 
 app.listen(port, hostname, () => {
