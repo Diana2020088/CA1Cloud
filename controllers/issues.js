@@ -9,6 +9,10 @@ module.exports = () => {
         res.json(await issues.get(req.params.issueNumber));
     }
 
+    const getComments = async (req, res) => {
+        res.json(await issues.get(req.params.comments));
+    }
+
     const postController = async (req, res) => {
         const title = req.body.title;
         const description = req.body.description;
@@ -18,6 +22,7 @@ module.exports = () => {
     return {
         getController,
         postController,
-        getByIssueNumber
+        getByIssueNumber,
+        getComments
     }
 }

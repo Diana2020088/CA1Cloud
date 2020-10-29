@@ -39,6 +39,8 @@ app.get("/issues", issuesController.getController);
 app.get("/issues/:issueNumber", issuesController.getByIssueNumber);
 // Add issue to project
 app.post("/project/:slug/issues", issuesController.postController);
+//All comments
+app.get("/comments", issuesController.getComments);
 
 
 app.listen(port, hostname, () => {
