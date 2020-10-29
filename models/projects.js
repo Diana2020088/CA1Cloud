@@ -6,7 +6,7 @@ const LOOKUP_ISSUES_PIPELINE = [
             from: "issues",
             localField:"_id",
             foreignField: "project_id",
-            as: "i",
+            as: "Al the issues",
         }
     }
 
