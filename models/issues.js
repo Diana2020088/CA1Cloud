@@ -14,7 +14,7 @@ module.exports = () =>{
     }
 
     const findComments = async () => {
-        const comments = db.find(COLLECTION, comm);
+        const comments = await COLLECTION.find( comm);
         return comments;
     }
 
