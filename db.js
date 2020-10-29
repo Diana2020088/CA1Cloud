@@ -42,6 +42,19 @@ module.exports = () => {
             });
         });
     };
+
+    const find = (collectionName, query = {}) => {
+        return new Promise((resolve, reject) => {
+            MongoClient.connect(uri, MONGO_OPTIONS, (err, client) => {
+                const db = client.db(DB_NAME);
+                const collection = db.collection(collectionName);
+                collection.find(query).toArray((err, docs) => {
+                    resolve(docs);
+                    client.close();
+                });
+            });
+        });
+    };
     const aggregate = (collectionName, pipeline = []) => {
         return new Promise((resolve, reject) => {
             MongoClient.connect(uri, MONGO_OPTIONS, (err, client) => {
@@ -62,6 +75,7 @@ module.exports = () => {
         count,
         get,
         add,
-        aggregate,
+        find,
+        aggregate
     };
 };
