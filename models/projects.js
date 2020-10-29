@@ -4,8 +4,9 @@ const LOOKUP_ISSUES_PIPELINE = [
     {
         $lookup:{
             from: "issues",
-            localField:"project_id",
-            foreignField: "slug",
+            localField:"_id",
+            foreignField: "project_id",
+            as: "i",
         }
     }
 
