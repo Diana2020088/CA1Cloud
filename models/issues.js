@@ -1,7 +1,7 @@
 const db = require("../db")();
 const COLLECTION = "issues";
 //const comma = {};
-//const commb = {comments:1,_id:0}; 
+const comm = {comments:1}; 
 
 module.exports = () =>{
     const get = async (issueNumber = null) =>{
@@ -15,7 +15,7 @@ module.exports = () =>{
     }
 
     const findComments = async () => {
-        const comments = await db.find(COLLECTION);
+        const comments = await db.find(COLLECTION, comm);
         return comments;
     }
 
