@@ -10,7 +10,7 @@ module.exports = () => {
     }
 
     const getComments = async (req, res) => {
-        res.json(await issues.findComments(req.params.comments));
+        res.json(await issues.findComments());
     }
 
     const postController = async (req, res) => {
