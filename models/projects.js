@@ -22,7 +22,7 @@ module.exports = () => {
             return projects;
         }
 
-        const project = await db.get(COLLECTION, {slug });
+        const project = await db.get(COLLECTION, {slug});
         return project;
     }
 
@@ -36,7 +36,19 @@ module.exports = () => {
     };
 
     const aggregateWithIssues = async ()  =>{
-        const projects = await db.aggregate(COLLECTION, LOOKUP_ISSUES_PIPELINE);
+        //const projects = await db.aggregate(COLLECTION, LOOKUP_ISSUES_PIPELINE);
+        const projects = await db.aggregate(COLLECTION, [
+            {$match: {slug: slug}},
+            {
+                $lookup:{
+                    from: "issues",
+                    localField:"_id",
+                    foreignField: "project_id",
+                    as: "Al the issues",
+                }
+            }
+        
+        ]);
         return projects;
     }
 
