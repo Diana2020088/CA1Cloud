@@ -13,7 +13,7 @@ module.exports = () =>{
         return issue;
     }
 
-    const findComments = async () =>{
+    const findComments = async () => {
         const comments = await db.find(COLLECTION, comm);
         return comments;
     }
