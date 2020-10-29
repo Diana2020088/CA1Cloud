@@ -48,8 +48,8 @@ module.exports = () => {
             MongoClient.connect(uri, MONGO_OPTIONS, (err, client) => {
                 const db = client.db(DB_NAME);
                 const collection = db.collection(collectionName);
-                collection.find( {}, {query:1}).toArray((err, docs) => {
-                    //resolve(docs);
+                collection.find(query).toArray((err, docs) => {
+                    resolve(docs);
                     client.close();
                 });
             });
