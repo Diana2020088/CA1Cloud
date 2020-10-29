@@ -43,12 +43,12 @@ module.exports = () => {
         });
     };
 
-    const find = (collectionName, query) => {
+    const find = (collectionName, querya, queryb) => {
         return new Promise((resolve, reject) => {
             MongoClient.connect(uri, MONGO_OPTIONS, (err, client) => {
                 const db = client.db(DB_NAME);
                 const collection = db.collection(collectionName);
-                collection.find(query).toArray((err, docs) => {
+                collection.find(querya,queryb).toArray((err, docs) => {
                     resolve(docs);
                     client.close();
                 });
