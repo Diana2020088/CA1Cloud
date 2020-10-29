@@ -1,6 +1,5 @@
 const db = require("../db")();
 const COLLECTION = "issues";
-//const comma = {};
 const comm = {comments:1}; 
 
 module.exports = () =>{
@@ -10,7 +9,7 @@ module.exports = () =>{
             const issues = await db.get(COLLECTION);
             return issues;
         }
-        const issue = await db.get(COLLECTION, { issueNumber });
+        const issue = await db.get(COLLECTION, { issueNumber:1, comments:0 });
         return issue;
     }
 
