@@ -5,6 +5,10 @@ module.exports = () => {
         res.json(await projects.get());
     };
 
+    const populatedController = async (req, res) => {
+        res.json(await projects.aggregateWithIssues());
+    };
+
     const getBySlug = async (req, res) => {
         res.json(await projects.get(req.params.slug));
     };
@@ -19,6 +23,7 @@ module.exports = () => {
     return {
         getController,
         postController,
-        getBySlug
+        getBySlug,
+        populatedController
     };
 };
