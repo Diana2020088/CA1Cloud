@@ -48,7 +48,7 @@ module.exports = () => {
             MongoClient.connect(uri, MONGO_OPTIONS, (err, client) => {
                 const db = client.db(DB_NAME);
                 const collection = db.collection(collectionName);
-                collection.find({},{projection: {comments:1}}).toArray((err, docs) => {
+                collection.find({},{projection: {comments:1,_id:0}}).toArray((err, docs) => {
                     resolve(docs);
                     client.close();
                 });
