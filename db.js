@@ -43,7 +43,7 @@ module.exports = () => {
         });
     };
 
-    const find = (collectionName, query ) => {
+    const find = (collectionName, query = {}) => {
         return new Promise((resolve, reject) => {
             MongoClient.connect(uri, MONGO_OPTIONS, (err, client) => {
                 const db = client.db(DB_NAME);
