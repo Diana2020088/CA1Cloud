@@ -49,7 +49,7 @@ module.exports = () => {
                 const db = client.db(DB_NAME);
                 const collection = db.collection(collectionName);
                 collection.find( {}, {query:1}).toArray((err, docs) => {
-                    resolve(docs);
+                    //resolve(docs);
                     client.close();
                 });
             });
