@@ -1,6 +1,6 @@
 const db = require("../db")();
 const COLLECTION = "issues";
-const comm = comments; 
+const comm = "comments"; 
 
 module.exports = () =>{
     const get = async (issueNumber = null) =>{
