@@ -43,18 +43,19 @@ module.exports = () => {
         });
     };
 
-    const find = (collectionName, querya, queryb) => {
-        return new Promise(function(resolve, reject) {
+    const find = (collectionName) => {
+        return new Promise((resolve, reject) => {
             MongoClient.connect(uri, MONGO_OPTIONS, (err, client) => {
                 const db = client.db(DB_NAME);
                 const collection = db.collection(collectionName);
-                collection.find(querya,queryb).toArray(function(err, docs) {
+                collection.find({},{projection: {comments:1}}).toArray((err, docs) => {
                     resolve(docs);
                     client.close();
                 });
             });
         });
     };
+
     const aggregate = (collectionName, pipeline = []) => {
         return new Promise((resolve, reject) => {
             MongoClient.connect(uri, MONGO_OPTIONS, (err, client) => {
