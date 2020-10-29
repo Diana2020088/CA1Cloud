@@ -37,6 +37,8 @@ app.get("/projects/:slug", projectsController.getBySlug);
 app.get("/issues", issuesController.getController);
 //Get an issue
 app.get("/issues/:issueNumber", issuesController.getByIssueNumber);
+//Gett all issues for a project
+app.get("/projects/:slug/issues", projectsController.populatedController)
 // Add issue to project
 //app.post("/project/:slug/issues", issuesController.postController);
 //All comments
