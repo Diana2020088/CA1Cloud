@@ -14,13 +14,10 @@ module.exports = () =>{
     }
 
     const findComments = async () => {
-        try {
-            const comments = await db.getCollection(COLLECTION).find( comm );
-
-        } catch(err) {
-            console.log(err);
-        }
-        //const comments = await db.find(COLLECTION, comm);
+        const comments = await db.find(COLLECTION, comm).toArray(function(err, result){
+            if (err) throw err;
+            console.log(result)
+        });
         return comments;
     }
 
