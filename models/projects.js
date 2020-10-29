@@ -1,8 +1,8 @@
 const db = require ("../db")();
 const COLLECTION = "projects";
-var SLUG = slug;
+const SLUG = slug;
 const LOOKUP_ISSUES_PIPELINE = [
-    {$match: {slug: "${SLUG}"}},
+    {$match: {slug: SLUG}},
     {
         $lookup:{
             from: "issues",
