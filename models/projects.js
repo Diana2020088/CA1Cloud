@@ -1,8 +1,6 @@
 const db = require ("../db")();
 const COLLECTION = "projects";
-//const SLUG = req.params['slug'];
 const LOOKUP_ISSUES_PIPELINE = 
-    // {$match: {slug: slug}},
     {
         $lookup:{
             from: "issues",
@@ -37,7 +35,7 @@ module.exports = () => {
 
     const aggregateWithIssues = async (slug = null)  =>{
         if (!slug) {
-            const projects = "test";//await db.get(COLLECTION);
+            const projects = await db.aggregate(COLLECTION, [LOOKUP_ISSUES_PIPELINE]);
             return projects;
         }
         const projects = await db.aggregate(COLLECTION, [{$match: {slug: slug}}, LOOKUP_ISSUES_PIPELINE]);
