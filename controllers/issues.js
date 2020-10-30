@@ -1,5 +1,4 @@
 const issues = require ('../models/issues.js')();
-const projects = require ('../models/projects.js')();
 
 module.exports = () => {
     const getController = async (req, res) =>{
@@ -15,7 +14,6 @@ module.exports = () => {
     }
 
     const postController = async (req, res) => {
-        res.json(await projects.get(req.params.slug));
         const title = req.body.title;
         const description = req.body.description;
         const result = await users.add(title, description);
