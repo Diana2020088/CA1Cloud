@@ -16,7 +16,9 @@ module.exports = () => {
     const postController = async (req, res) => {
         const title = req.body.title;
         const description = req.body.description;
-        const result = await users.add(title, description);
+        const slug = req.params.slug;
+        const status = req.body.status;
+        const result = await issues.add(title, description, slug, status);
         res.json(result);
     }
     return {
