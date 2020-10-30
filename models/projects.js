@@ -1,7 +1,7 @@
 const db = require ("../db")();
 const COLLECTION = "projects";
 //const SLUG = req.params['slug'];
-const LOOKUP_ISSUES_PIPELINE = [
+const LOOKUP_ISSUES_PIPELINE = 
     // {$match: {slug: slug}},
     {
         $lookup:{
@@ -12,7 +12,7 @@ const LOOKUP_ISSUES_PIPELINE = [
         }
     }
 
-];
+;
 
 module.exports = () => {
     const get = async (slug = null) => {
