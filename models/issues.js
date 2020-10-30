@@ -9,7 +9,7 @@ module.exports = () =>{
             const issues = await db.get(COLLECTION);
             return issues;
         }
-        const issue = await db.get(COLLECTION, { issueNumber});
+        const issue = await db.get(COLLECTION, {issueNumber});
         return issue;
     }
 
@@ -18,10 +18,10 @@ module.exports = () =>{
         return comments;
     }
 
-    const add = async (title, description) => {
+    const add = async (title, description, slug) => {
         const issueCount = await db.count(COLLECTION);
         const results = await db.add(COLLECTION, {
-            issueNumber: issueCount + 1,
+            issueNumber:  slug + "-" + (issueCount + 1),
             title: title,
             description: description
         });
