@@ -35,7 +35,7 @@ module.exports = () => {
         return results.results;
     };
 
-    const aggregateWithIssues = async (slug)  =>{
+    const aggregateWithIssues = async ()  =>{
         //const projects = await db.aggregate(COLLECTION, LOOKUP_ISSUES_PIPELINE);
         const projects = await db.aggregate(COLLECTION,LOOKUP_ISSUES_PIPELINE);
         return projects;
