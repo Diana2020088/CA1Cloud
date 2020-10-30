@@ -1,4 +1,5 @@
 const issues = require ('../models/issues.js')();
+const projects = require ('../models/projects.js')();
 
 module.exports = () => {
     const getController = async (req, res) =>{
