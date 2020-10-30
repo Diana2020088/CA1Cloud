@@ -6,7 +6,7 @@ module.exports = () => {
     };
 
     const populatedController = async (req, res) => {
-        res.json(await projects.aggregateWithIssues());
+        res.json(await projects.aggregateWithIssues(req.params.slug));
     };
 
     const getBySlug = async (req, res) => {
