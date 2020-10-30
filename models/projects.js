@@ -41,15 +41,15 @@ module.exports = () => {
             return projects;
         }
         //const projects = await db.aggregate(COLLECTION, LOOKUP_ISSUES_PIPELINE);
-        const projects = await db.aggregate(COLLECTION, {$match: {slug: slug}},
+        const projects = await db.aggregate(COLLECTION, [{$match: {slug: slug}},
             {
                 $lookup:{
                     from: "issues",
                     localField:"_id",
                     foreignField: "project_id",
-                    as: "Al the issues",
+                    as: "All the issues",
                 }
-            });
+            }]);
         return projects;
     }
 
