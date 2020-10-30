@@ -2,7 +2,7 @@ const db = require ("../db")();
 const COLLECTION = "projects";
 //const SLUG = req.params['slug'];
 const LOOKUP_ISSUES_PIPELINE = [
-    {$match: {slug: slug}},
+    // {$match: {slug: slug}},
     {
         $lookup:{
             from: "issues",
@@ -35,20 +35,9 @@ module.exports = () => {
         return results.results;
     };
 
-    const aggregateWithIssues = async ()  =>{
+    const aggregateWithIssues = async (slug)  =>{
         //const projects = await db.aggregate(COLLECTION, LOOKUP_ISSUES_PIPELINE);
-        const projects = await db.aggregate(COLLECTION, [
-            {$match: {slug: slug}},
-            {
-                $lookup:{
-                    from: "issues",
-                    localField:"_id",
-                    foreignField: "project_id",
-                    as: "Al the issues",
-                }
-            }
-        
-        ]);
+        const projects = await db.aggregate(COLLECTION, {$match: {slug: {slug}}},LOOKUP_ISSUES_PIPELINE);
         return projects;
     }
 
