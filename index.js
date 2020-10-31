@@ -41,8 +41,13 @@ app.get("/issues/:issueNumber", issuesController.getByIssueNumber);
 app.get("/projects/:slug/issues", projectsController.populatedController)
 // Add issue to project
 app.post("/projects/:slug/issues", issuesController.postController);
+
 //All comments
 app.get("/comments", issuesController.getComments);
+//Get all the comments fon an issue
+app.get("/issues/:issueNumber/comments", issuesController.commentsByIssue);
+//Get comments by ID
+app.get("/issues/:issueNumber/comments/:id", issuesController.commentsById);
 
 
 app.listen(port, hostname, () => {

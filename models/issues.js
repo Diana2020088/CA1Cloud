@@ -3,7 +3,6 @@ const ObjectId= require('mongodb').ObjectId;
 const COLLECTION = "issues";
 const comm = {comments:1}; 
 
-
 module.exports = () =>{
     const get = async (issueNumber = null) =>{
         console.log('inside issues model');
@@ -35,9 +34,40 @@ module.exports = () =>{
         });
         return results.result;
     }
+
+    const getCommentsForIssue = async (issueNumber) =>{
+        const PIPELINE_COMMENTS_BY_ISSUE =[
+            {$match: {"issueNumber": issueNumber}},
+            {$project:{
+                comments: 1,
+                _id: 1,
+                issueNumber: 1
+            }}
+        ]
+        const getCommentbyIssue = await db.aggregate(COLLECTION , PIPELINE_COMMENTS_BY_ISSUE)
+        return getCommentbyIssue;
+    };
+
+    const getOneComment = async (issueNumber, id) =>{
+        const PIPELINE = [
+            {$unwind:"$comments"},
+            {$match:{"issueNumber": issueNumber, "comments.id": id}},
+            {$project:{
+                       comments: 1,
+                       id: 1,
+                       issueNumber: 1
+                    }
+        }]
+        const comments = await db.aggregate( COLLECTION , PIPELINE);
+        return comments;
+    
+    }
+
     return{
         get,
         add,
-        findComments
+        findComments,
+        getCommentsForIssue,
+        getOneComment
     }
 };

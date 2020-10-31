@@ -49,6 +49,7 @@ module.exports = () => {
                 const db = client.db(DB_NAME);
                 const collection = db.collection(collectionName);
                 collection.find({},{projection: query }).toArray((err, docs) => {
+                    //collection.find(query).toArray((err, docs) => {
                     resolve(docs);
                     client.close();
                 });

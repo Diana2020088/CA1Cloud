@@ -13,6 +13,16 @@ module.exports = () => {
         res.json(await issues.findComments());
     }
 
+
+    const commentsByIssue = async(req, res) => {
+        res.json(await issues.getCommentsForIssue(req.params.issueNumber));
+    }
+
+    const commentsById = async(req, res) => {
+        res.json(await issues.getOneComment(req.params.issueNumber, parseInt(req.params.id)));
+    }
+
+
     const postController = async (req, res) => {
         const title = req.body.title;
         const description = req.body.description;
@@ -25,6 +35,8 @@ module.exports = () => {
         getController,
         postController,
         getByIssueNumber,
-        getComments
+        getComments,
+        commentsByIssue,
+        commentsById
     }
 }
