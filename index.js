@@ -44,10 +44,12 @@ app.post("/projects/:slug/issues", issuesController.postController);
 
 //All comments
 app.get("/comments", issuesController.getComments);
-//Get all the comments fon an issue
+//Get all the comments for an issue
 app.get("/issues/:issueNumber/comments", issuesController.commentsByIssue);
 //Get comments by ID
 app.get("/issues/:issueNumber/comments/:id", issuesController.commentsById);
+//Add new comments to an issue
+app.post("issues/:issueNumber/comments", issuesController.postComment);
 
 
 app.listen(port, hostname, () => {

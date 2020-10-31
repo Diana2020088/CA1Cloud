@@ -49,7 +49,6 @@ module.exports = () => {
                 const db = client.db(DB_NAME);
                 const collection = db.collection(collectionName);
                 collection.find({},{projection: query }).toArray((err, docs) => {
-                    //collection.find(query).toArray((err, docs) => {
                     resolve(docs);
                     client.close();
                 });
@@ -73,11 +72,25 @@ module.exports = () => {
             });
         });
     };
+
+    const update = (collectionName, query = {}, newValues = {}) => {
+        return new Promise((resolve, reject) => {
+            MongoClient.connect(uri, MONGO_OPTIONS, (err, client) => {
+                const db = client.db(DB_NAME);
+                const collection = db.collection(collectionName);
+                collection.updateOne(query, newValues).toArray((err, docs) => {
+                    resolve(docs);
+                    client.close();
+                });
+            });
+        });
+    };
     return {
         count,
         get,
         add,
         find,
-        aggregate
+        aggregate,
+        update
     };
 };

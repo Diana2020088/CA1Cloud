@@ -1,5 +1,5 @@
 const db = require("../db")();
-const ObjectId= require('mongodb').ObjectId;
+const ObjectId = require('mongodb').ObjectId;
 const COLLECTION = "issues";
 const comm = {comments:1}; 
 
@@ -17,9 +17,9 @@ module.exports = () =>{
     const findComments = async () => {
         const comments = await db.find(COLLECTION, comm);
         return comments;
-    }
+    };
 
-    const add = async ({title, description, slug, status}) => {
+    const add = async (title, description, slug, status) => {
         const issueCount = await db.count(COLLECTION);
         const projects = await db.get('projects', {slug});
         console.log(projects);
@@ -33,7 +33,15 @@ module.exports = () =>{
             
         });
         return results.result;
+    };
+
+    const addComment = async (issueNumber, text, id, author) =>{
+        var query = {"issueNumber": issueNumber}
+        var newValues = {$set: {comments: [{text: text, id: id, author: author}]}}
+        const addNewComent = await db.update(COLLECTION, query, newValues)
+        return addNewComent;
     }
+    
 
     const getCommentsForIssue = async (issueNumber) =>{
         const PIPELINE_COMMENTS_BY_ISSUE =[
@@ -48,8 +56,8 @@ module.exports = () =>{
         return getCommentbyIssue;
     };
 
-    const getOneComment = async (issueNumber, id) =>{
-        const PIPELINE = [
+    const getOneCommentById = async (issueNumber, id) =>{
+        const PIPELINE_COMMENTS_BY_ID = [
             {$unwind:"$comments"},
             {$match:{"issueNumber": issueNumber, "comments.id": id}},
             {$project:{
@@ -58,16 +66,19 @@ module.exports = () =>{
                        issueNumber: 1
                     }
         }]
-        const comments = await db.aggregate( COLLECTION , PIPELINE);
+        const comments = await db.aggregate( COLLECTION , PIPELINE_COMMENTS_BY_ID);
         return comments;
     
-    }
+    };
+
+
 
     return{
         get,
         add,
         findComments,
         getCommentsForIssue,
-        getOneComment
+        getOneCommentById,
+        addComment
     }
 };

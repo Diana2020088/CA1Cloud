@@ -19,7 +19,7 @@ module.exports = () => {
     }
 
     const commentsById = async(req, res) => {
-        res.json(await issues.getOneComment(req.params.issueNumber, parseInt(req.params.id)));
+        res.json(await issues.getOneCommentById(req.params.issueNumber, parseInt(req.params.id)));
     }
 
 
@@ -31,12 +31,25 @@ module.exports = () => {
         const result = await issues.add(title, description, slug, status);
         res.json(result);
     }
+
+    const postComment = async (req, res) => {
+        const text = req.body.text;
+        const id = parseInt(req.body.id);
+        const author = req.body.author;
+        const issueNumber = req.params.issueNumber;
+        const result = await issues.addComment(issueNumber, text, id, author);
+        res.json(result);
+
+    }
+
+
     return {
         getController,
         postController,
         getByIssueNumber,
         getComments,
         commentsByIssue,
-        commentsById
+        commentsById,
+        postComment
     }
 }
