@@ -85,7 +85,7 @@ List of features done:
 ## Roadmap
 To-do list: 
 - [ ] Start working on frontend
-- [ ] Docker-ise the application
+- [x] Docker-ise the application
 
 ## Author info
 Created by https://github.com/Diana2020088 - feel free to contact me!
