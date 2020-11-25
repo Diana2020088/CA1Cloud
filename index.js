@@ -55,6 +55,21 @@ app.use(async (req, res, next) => {
 
 app.use(bodyParser.json());
 
+const path = require('path');
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'hbs');
+
+const PROJECTS = require('./models/projects')();
+app.get('/', async (req, res) => {
+	const { projectsList } = await PROJECTS.get();
+	res.render('index', {
+		title: 'Welcome',
+		heading: 'Welcome to Bug-Tracker!',
+		text: 'These are the projects in this App:',
+		projects: projectsList,
+	});
+});
+
 //Get all users
 app.get('/users', usersController.getController);
 //Add an user
